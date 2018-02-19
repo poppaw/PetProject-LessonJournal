@@ -1,0 +1,5 @@
+Kowalski Jan,Józef,Katarzyna,Kraków ul.Ogórkowa 12,121111111,12-05,2008
+Pilny Bożydar,Stanisław,Karbiniola,Michałowice ul.Zakręt 15,122222222, 01-02,2009
+Leniwy Gromisław,Jan,Stanisława,Kozia Wola 35,112223344,02-09,2005
+ 
+
