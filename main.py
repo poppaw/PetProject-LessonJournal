@@ -1,6 +1,14 @@
+#import data_operations
 import gui
-import data_operations
 
 
 def main():
-    print_program_menu(menu_commands)
+    title = "Menu główne"
+    menu_commands = ['wyświetl listę uczniów', 'dodaj / usuń ucznia',
+                     'tygodniowy grafik zajęć', 'statystyki', 'terminy egzaminów',
+                     'inwentarz materiałów dydaktycznych']
+    gui.print_menu(title, menu_commands)
+
+
+if __name__ == '__main__':
+    main()
