@@ -16,9 +16,9 @@ def import_schedule(file_name="grafik.txt"):
 
 def display_schedule(week_list):
     for day in week_list:
-        print ('\n' + day[0] + ':')
+        print('\n' + day[0] + ':')
         for i in range(1,len(day)):
-            print ('\t' + day[i])
+            print('\t' + day[i])
 
 def make_days_list(file_name="grafik.txt"):
     """

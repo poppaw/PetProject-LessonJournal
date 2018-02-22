@@ -5,9 +5,9 @@ def start_module():
     
     title = "Lista uczniów"
     students_list = data_operations.make_students_list()
-    quit_opt = True
+    #quit_opt = True
     text = "Wybierz ucznia"
-    gui.print_menu(title, students_list, quit_opt, add_opt)
+    gui.print_menu(title, students_list, quit_opt=True, add_opt=True)
     choice = gui.choose_option(students_list, text)
     for student in students_list:
         if choice == students_list.index(student)+1:

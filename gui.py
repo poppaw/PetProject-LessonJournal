@@ -34,7 +34,7 @@ def choose_option(menu_commands=None, text="Wpisz numer pozycji"):
             sys.exit(0)
     elif inputed_value == 'q' or inputed_value == '':
         choice = inputed_value
-    elif menu_commands is True:
+    elif menu_commands:
         if inputed_value.isdigit() and int(inputed_value) in range(1, len(menu_commands)+1):
             choice = int(inputed_value)
     else:
