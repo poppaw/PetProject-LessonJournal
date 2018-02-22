@@ -82,8 +82,8 @@ def manu_handle(list_of_positions):
 
 
 def labels():
-    names_of_columns = ["Student's name", "Father's name", "Mother's name", 
-                        "Adress", "Phone number", "Date", "Year"]
+    names_of_columns = ["Student's name", "Class", "Date of birth",
+                        "Parent's name", "Adress", "Phone", "E-mail"]
 
     return names_of_columns
 

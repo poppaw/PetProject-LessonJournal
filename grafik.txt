@@ -1,0 +1,5 @@
+poniedziałek,16.00-16.45 Kowalski,16.45-17.30 Przeciętny,17.30-18.15 Leniwy,18.15-18.30 przerwa,18.30-19.15 Pilny
+wtorek,
+środa,
+czwartek,
+piątek,15.30-16.15 Przeciętny,16.45-17.00 Leniwy,17.00-17.45 Kowalski,17.45-18.00 przerwa,18.00-18.45 Pilny

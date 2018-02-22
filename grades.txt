@@ -1,4 +1,4 @@
-Kowalski Jan	czytanie:5,	gamy:4,	etiudy:4,	granie z pamięci:3
-Pilny Bożydar	czytanie:6,	gamy:6,	etiudy:5,	granie z pamięci:5
-Leniwy Gromisław	czytanie:3,	gamy:3,	etiudy:2,	granie z pamięci:1
+Kowalski Jan	czytanie:5,gamy:4,etiudy:4,granie z pamięci:3
+Pilny Bożydar	czytanie:6,gamy:6,etiudy:5,granie z pamięci:5
+Leniwy Gromisław	czytanie:3,gamy:3,etiudy:2,granie z pamięci:1
 

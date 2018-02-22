@@ -1,0 +1,5 @@
+instrument waltornia B Thomann,SK111/2012,magazyn,sprawna
+instrument waltornia B/F Yamaha, SK112/2013,Kowalski
+ustnik Hablovetz,brak nr inw,szafa
+ustnik Vincent Bach 7,brak nr inw,Pilny
+
