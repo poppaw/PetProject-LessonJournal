@@ -1,5 +1,6 @@
 import gui
 
+
 def import_schedule(file_name="grafik.txt"):
     """
     imports day list from txt file formatted in csv way
@@ -31,14 +32,27 @@ def make_days_list(file_name="grafik.txt"):
     # print (days_list)
     return days_list
 
+
+def choose_day():
+    pass
+
 def start_module():
-    week_list = import_schedule()
-    display_schedule(week_list)
-    title = "Edycja planu"
-    days_list = make_days_list()
-    text = "Wybierz dzień do edycji"
-    gui.print_menu(title, days_list, quit_opt=True)
-    choice = gui.choose_option(days_list, text)
+    while True:
+        week_list = import_schedule()
+        display_schedule(week_list)
+        decision = input("Jeśli chcesz edytować, wciśnij [enter]")
+        if decision == '':
+            title = "Edycja planu"
+            days_list = make_days_list()
+            text = "Wybierz dzień do edycji"
+            gui.print_menu(title, days_list, quit_opt=True)
+            choice = gui.choose_option(days_list, text)
+            if choice == 1:
+                pass
+                #gui.print_menu("piątek", )
+            elif choice == 'q':
+                return False
+
     
 
 

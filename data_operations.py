@@ -1,3 +1,5 @@
+import schedule
+
 def make_students_list(file_name="students.txt"):
     """
     imports students list from txt file formatted in csv way
@@ -9,11 +11,19 @@ def make_students_list(file_name="students.txt"):
             students_list.append(line.rstrip().split(",")[0])
     # print (students_list)
     return students_list
+    
+
+def import_all_data():
+    make_students_list(file_name="students.txt")
+    schedule.import_schedule()
+
+
 
 
 def add_student(students_list):
     new_student = input("Wpisz: Nazwisko[spacja]Imię: ")
     students_list.append(new_student)
+    repertuar_list.append(new_student)
     return students_list
     # or updated_students_list = students_list.append(new_student)
     # return updated_students_list
