@@ -11,15 +11,14 @@ def main():
     inicjuje program
     wyświetla komunikat powitalny i pyta czy rozpocząć
     """
-    #os.system('clear')
-    print ("Witaj w programie BELFER")
-    choice = gui.choose_option(menu_commands=None,text="Wciśnij [enter] by rozpocząć, [0] by zakończyć")
+    print("Witaj w programie BELFER")
+    choice = gui.choose_option(menu_commands=None, text="Wciśnij [enter] by rozpocząć, [0] by zakończyć")
     if choice == '':
         display_main_menu()
     else:
         main()
-    
-    
+
+
 def display_main_menu():
     """
     wyświetla menu główne

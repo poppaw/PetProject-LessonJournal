@@ -1,1 +1,2 @@
-Kowalski Jan,4.5,5,3,?
+Kowalski Jan,techniczny I semestr: 4.5,repertuarowy I semestr: 5,techniczny II semestr: 3,repertuarowy II semestr:?
+Pilny Bożydar,

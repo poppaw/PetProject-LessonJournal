@@ -26,15 +26,7 @@ def extract_first_element(necessary_list):
     return first_elements_list
 
 
-def make_students_list():
-    """
-    imports students list from .txt file formatted in csv way
-    -> returns list of students' names
-    """
-    students_data_list = generate_list_from_txt("students.txt")
-    students_list = extract_first_element(students_data_list)
-    print (students_list)
-    return students_list
+
     
 
 def import_all_data():

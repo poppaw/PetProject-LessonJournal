@@ -23,7 +23,7 @@ def display_schedule(week_list):
 def make_days_list(file_name="grafik.txt"):
     """
     imports data (here: days) from txt file formatted in csv way
-    -> returns sorted list of labels - first elements of listedlists (here days)
+    -> returns sorted list of labels - first elements of listed lists (here days)
     """
     days_list = []
     with open(file_name, "r") as f:

@@ -44,6 +44,32 @@ def choose_option(menu_commands=None, text="Wpisz numer pozycji"):
     return choice
 
 
+def print_table(necessary_list, category_list, number):
+    """
+    Args:
+        necessary: list of lists - table to display
+        title_list: list containing table headers
+
+    Returns:
+        This function doesn't return anything it only prints to console.
+    """
+    
+    data_to_print = [category_list] + [necessary_list[number]]
+    print(data_to_print)
+    list_len_records = []
+    longest_length_of_word = []
+    for i in range(len(data_to_print)):
+        list_len_records.append([])
+        for record in data_to_print[i]:
+            list_len_records[i].append(len(record))
+        longest_length_of_word.append((max(list_len_records[i])))
+    for index, record in enumerate(data_to_print):
+        line = '|'.join(str(x).ljust(max(longest_length_of_word)) for x in record)
+        if index == 0:
+            print("-" * len(line))
+        print(line)
+        if index == 0 or index + 1 == len(data_to_print):
+            print("-" * len(line))
 
 """def display_enumerated_students(students_list):
     enumerated_students = dict(enumerate(students_list))
