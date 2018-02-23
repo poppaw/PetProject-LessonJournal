@@ -1,4 +1,4 @@
-Kowalski Jan,2,12-05-2008,Józef Katarzyna,Kraków ul.Ogórkowa 12,121111111,kowalski@adres.pl
+Kowalski Jan,3,12-05-2008,Józef Katarzyna,Kraków ul.Ogórkowa 12,121111111,kowalski@adres.pl
 Pilny Bożydar,3,01-02-2009,Stanisław Hildegarda,Michałowice ul.Zakręt 15,122222222,pilny@gmail.com  
 Leniwy Gromisław,4,02-09-2005,Jan Stanisława,Kozia Wola 35,112223344,leniwy@szkola.kr
 Przeciętny Sławomir, ?, ?, ?, ?, ?, ?

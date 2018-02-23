@@ -95,11 +95,12 @@ def student_options_manu():
                "List of student's degrees",
                "Student's attendance",
                "Repertoire reworked",
-               "Studen's profile"]
+               "Studen's profile",
+               "Quit"]
 
     return options
 
-def create_list_from_file(filename='students.txt'):
+def create_list_from_file(filename):
 
     with open(filename) as file_to_open:
         list_from_file = file_to_open.readlines()
@@ -167,13 +168,13 @@ def display_table(list_of_lists, title_list, index):
 
     return index
 
-def use_table():
+def use_table(filename, number):
     index = 1
-    title_list = labels(0)
-    list_of_students = create_list_from_file()
-    length_of_table = len(list_of_students) + 1
+    title_list = labels(number)
+    list_of_lists = create_list_from_file(filename)
+    length_of_table = len(list_of_lists) + 1
     while index != 'e':
-        coordinate = display_table(list_of_students, title_list, index)
+        coordinate = display_table(list_of_lists, title_list, index)
         index = position(coordinate, length_of_table)
 
     return coordinate - 1
@@ -222,15 +223,21 @@ def change_element(row_index, number, filesname):
             print("Only numbers in scope please!")
 
 
-def attendance_table():
+def attendance_table(number):
     headlines = labels(2)
 
     table = []
 
-    for i in range(len(headlines)):
-        table.append("-")
+    for i in range(number):
+        table.append(["-"] * len(headlines))
 
     return table
+
+
+def add_rows(name_of_student):
+    amount = int(input("Enter number of rows: "))
+    rows = attendance_table(amount)
+    export_to_file(rows, name_of_student + ".txt", 'a')
 
 
 def export(list_, filename, mode='a'):
@@ -242,76 +249,143 @@ def export(list_, filename, mode='a'):
 
 
 def attendance_check(name_of_student):
-    headlines = labels(2)
-    table = attendance_table()
-    max_table_index = len(table)
-    display_table([table], headlines, 0)
-    corect_input = False
-    while not corect_input:
+    ask = input("Display attendance table (d) or edit to make change (e): ")
+    if ask == 'd':
+        headlines = labels(2)
         try:
-            which_element_to_change = input("Enter number of element you want to change "
-                                + "(1-" + str(max_table_index) + ")" + " or 'q' to exit: ")
-            if which_element_to_change == 'q':
-                corect_input = True
-                return corect_input
-            else:
-                element_index = int(which_element_to_change) -1
-                change_data = input("Please enter new data: ")
-                table[element_index] = change_data
-                export(table, name_of_student + ".txt", 'w')
-                new_table = create_list_from_file(name_of_student + ".txt")
-                display_table(new_table, headlines, 0)
-                ask = input("Do you want to add new row (y/n): ")
-                if ask == 'y':
-                    row = attendance_table()
-                    export(row, name_of_student + ".txt", 'a')
-                    new_table = create_list_from_file(name_of_student + ".txt")
-                    display_table(new_table, headlines, 0)
-
-            
+            table = create_list_from_file(name_of_student + ".txt")
+            display_table(table, headlines, 0)
         except:
-            print("Only numbers in scope please!")
+            print("File is empty or doesn't exist. Creat it by adding some rows.")
+        info = input("To see information about student's presence press 'x' else press enter: ")
+        if info == 'x':
+            attendance_count(name_of_student)
+            stop = input("To leave press enter: ")
+    elif ask == 'e':
+        ask_about_rows = input("For adding more rows enter 'a' else 'enter': ")
+        if ask_about_rows == 'a':
+            add_rows(name_of_student)
+            print("New rows has been added.")
+        else:
+            corect_input = False
+            while not corect_input:
+                headlines = labels(2)
+                table = create_list_from_file(name_of_student + ".txt")
+                row_index = use_table(name_of_student + ".txt", 2)
+                max_table_index = len(headlines)
+                try:
+                    which_element_to_change = input("Enter number of element you want to change "
+                                        + "(1-" + str(max_table_index) + ")" + " or 'q' to exit: ")
+                    if which_element_to_change == 'q':
+                        corect_input = True
+                        return corect_input
+                    else:
+                        element_index = int(which_element_to_change) -1
+                        change_data = input("Please enter new data: ")
+                        table[row_index][element_index] = change_data
+                        export_to_file(table, name_of_student + ".txt", 'w')
+                        new_table = create_list_from_file(name_of_student + ".txt")
+                        display_table(new_table, headlines, 0)
+                except:
+                    print("Only numbers in scope please!")
 
 
-def average(list_):
+def average_grades(list_):
 
     list_of_grades = []
     for element in list_:
         one_student = []
         for i in range(len(element)):
-            one_student = []
             if i == 0:
                 one_student.append(element[i])
             else:
                 one_student.append(float(element[i]))
-    pass
-         
+        list_of_grades.append(one_student)
 
-        
+    student_avg_grades = []
+    for element in list_of_grades:
+        student = [element[0], sum(element[1:])/(len(element) - 1)]
+        student_avg_grades.append(student)
+
+    return student_avg_grades
+
+
+def attendance_count(name_of_student):
+
+    list_of_attendance = create_list_from_file(name_of_student + ".txt")
+    absence = 0
+    presence = 0
+    for element in list_of_attendance:
+        presence += element.count('x')
+        absence += element.count('*')
+
+    average_presence = round((presence/(presence + absence)) * 100, 2)
+
+    print(name_of_student + ": presence: " + str(presence) + 
+         " absence: " + str(absence) + " average: " + str(average_presence) + "%")
+
+
+def add_to_list(list_of_lists, element, index):
+
+    list_of_repertoire = list_of_lists
+    for i in range(len(list_of_repertoire)):
+        if i == index:
+            list_of_repertoire[i].append(element)
+        else:
+            list_of_repertoire[i].append("?")
+
+    return list_of_repertoire
+
 
 
 
 
 def submenus(choose):
     if choose == 0:
-        row_index = use_table()
-        list_ = create_list_from_file()
+        row_index = use_table('students.txt', 0)
+        list_ = create_list_from_file('students.txt')
         name_of_student = list_[row_index][0]
         chosen_student = choose_element_from_list(list_, row_index)
         length_of_row = len(chosen_student)
-        title_list = labels(0)
-        manu_position = student_manu_use()
-        if manu_position == 0:
-            display_table([chosen_student], title_list, 0)
-            change_element(row_index, 0, 'students.txt')
-        elif manu_position == 1:
-            headlines = labels(1)
-            grade_list = create_list_from_file('grades_seb.txt')
-            row_from_grade_list = grade_list[row_index]
-            display_table([row_from_grade_list], headlines, 0)
-            change_element(row_index, 1, 'grades_seb.txt')
-        elif manu_position == 2:
-            attendance_check(name_of_student)
+        end = False
+        while not end:
+            manu_position = student_manu_use()
+            if manu_position == 0:
+                title_list = labels(0)
+                display_table([chosen_student], title_list, 0)
+                change_element(row_index, 0, 'students.txt')
+            elif manu_position == 1:
+                headlines = labels(1)
+                grade_list = create_list_from_file('grades_seb.txt')
+                row_from_grade_list = grade_list[row_index]
+                display_table([row_from_grade_list], headlines, 0)
+                change_element(row_index, 1, 'grades_seb.txt')
+                ask = input("If you want to see student's grade's average press 'x' else press enter: ")
+                if ask == 'x':
+                    list_of_grades = create_list_from_file('grades_seb.txt')
+                    avg_list = average_grades(list_of_grades)
+                    students_avg = avg_list[row_index]
+                    print(name_of_student + ": average grade: " + str(students_avg))
+                    stop = input("Press enter to leave: ")
+            elif manu_position == 2:
+                attendance_check(name_of_student)
+            elif manu_position == 3:
+                leave = False
+                while not leave:
+                    list_of_students_rep = create_list_from_file('repertuar.txt')
+                    headlines = ['#'] * len(list_of_students_rep[0])
+                    display_table(list_of_students_rep, headlines, 0)
+                    ask = input("If you want to add more repertoire press 'x' elss press enter: ")
+                    if ask == 'x':
+                        element = input("Type repertoire you want to add: ")
+                        new_list = add_to_list(list_of_students_rep, element, row_index)
+                        export_to_file(new_list, 'repertuar.txt')
+                    else:
+                        leave = True
+
+            elif manu_position == 5:
+                end = True
+
 
 
 
@@ -319,8 +393,9 @@ def submenus(choose):
 
 
 def main():
-    choose = manu_use()
-    submenus(choose)
+    while True:
+        choose = manu_use()
+        submenus(choose)
     
     
 
